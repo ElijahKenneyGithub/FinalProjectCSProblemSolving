@@ -5,7 +5,9 @@ from scipy.io import wavfile
 # Some of the Code below is taken directly from slides
 
 
-sample_rate, data = wavfile.read('16bit4chan.wav')  # Initialization, can be changed to be modular later
+
+
+sample_rate, data = wavfile.read('Cargonia Copy.wav')  # Initialization, can be changed to be modular later
 
 try:  # Try Except Block for if the wav file is or isn't Mono, if it is mono, it will use the first block,
     # else it will use the second
@@ -16,7 +18,7 @@ try:  # Try Except Block for if the wav file is or isn't Mono, if it is mono, it
     cbar = plt.colorbar(im)
 
 except:
-    spectrum, freqs, t, im = plt.specgram(np.mean(data, axis=1), Fs=sample_rate, NFFT=1024,
+    spectrum, freqs, t, im = plt.specgram(np.mean(data, axis=1), Fs = sample_rate, NFFT=1024,
                                           cmap=plt.get_cmap('autumn_r'))
     plt.xlabel("Time (s)")
     plt.ylabel("Frequency (Hz)")
@@ -28,9 +30,9 @@ except:
 
 # Measuring Reverb (taken from slides)
 def find_target_frequency(freqs_para):
-    x = 0
     for x in freqs_para:
-        if x > 1000:  # This can be change to find a specific range, standard is 1000
+        print(x)
+        if x > 100000:  # This can be changed to find a specific range, standard is 1000
             break
     return x
 
@@ -41,6 +43,10 @@ def frequency_check():
     target_frequency = find_target_frequency(freqs)
     index_of_frequency = np.where(freqs == target_frequency)[0][0]
     data_for_frequency = spectrum[index_of_frequency]
+    if np.any(data_for_frequency == 0):  # Cleans the data incase shenanigans ensue
+        data_for_frequency[data_for_frequency == 0] = 1e-10  # Replace zeros with a small non-zero value
+
+    data_in_db_fun = 10 * np.log10(data_for_frequency)
     data_in_db_fun = 10 * np.log10(data_for_frequency)
     return data_in_db_fun
 
@@ -103,10 +109,9 @@ plt.plot(t[index_of_max_less_5], data_in_db[index_of_max_less_5], 'yo')
 plt.plot(t[index_of_max_less_25], data_in_db[index_of_max_less_25], 'go')
 plt.show()  # Shows the line plot + scatter plot of the wav file
 
-plt.grid()
 
 # Statistical Analysis of Frequency
-Standard_Dev_Freq = int(np.std(freqs))
+Standard_Dev_Freq = (np.std(freqs))
 Average_Freq = np.average(abs(freqs))
 Median_Freq = np.median(freqs)
 Max_Freq = np.max(freqs)
@@ -119,7 +124,7 @@ Median_db = np.median(data_in_db)
 Max_db = np.max(data_in_db)
 Min_db = np.min(data_in_db)
 
-print("\nThe RT60 reverb time at Freq", int(target_frequency), "Hz is", round(abs(rt60), 2) * 1.5, "seconds.\n")
+print("\nThe RT60 reverb time at Freq", (target_frequency), "Hz is", round(abs(rt60), 2) * 1.5, "seconds.\n")
 print("Standard Deviation for frequency is:", Standard_Dev_Freq)
 print("Average for frequency from 0 is:", Average_Freq)
 print("Median for frequency is:", Median_Freq)

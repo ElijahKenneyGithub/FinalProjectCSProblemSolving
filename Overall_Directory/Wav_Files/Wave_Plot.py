@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from pydub import AudioSegment
 from scipy.io import wavfile
 
 # Some of the Code below is taken directly from slides

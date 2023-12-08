@@ -209,8 +209,7 @@ class View:
         ax2.plot(self.t[index_of_max], self.data_in_db[index_of_max], 'ro')
 
         sliced_array = self.data_in_db[index_of_max:]
-        value_of_max_less_5 = value_of_max - 5
-
+        value_of_max_less_5 = value_of_max -
         # Finding nearest Values of -5 and -25 db from max
         value_of_max_less_5 = find_nearest_value(sliced_array, value_of_max_less_5)
         index_of_max_less_5 = np.where(self.data_in_db == value_of_max_less_5)

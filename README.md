@@ -24,4 +24,4 @@ To stop an audio file from playing after loading a new file, play the new file
 
 If you display a new low / medium / high plot after having opened another, it will take down the previous plot and display the new one
 
-The 'Display Statistics' will not work until a low / medium / high plot has been been made
+The 'Display Statistics' will not work until a low / medium / high plot has been made

@@ -7,7 +7,8 @@ Contained within this repository are the files necessary to insert WAV and mp3 f
 1) Load a file (Either wav or mp3, it doesn't matter which) using the 'Load File' button. No buttons except 'Load File' will work until a file is loaded.
   
 2) Click to Graph low / med / high frequency plot plots, or play the audio file using the 'Play File' button (which will also show the duration of the file)
-   2a) Clicking on display low / medium / high frequency plots will display the spectrogram and the additional plot as required by the assignment
+
+2a) Clicking on display low / medium / high frequency plots will display the spectrogram and the additional plot as required by the assignment
        if it is the first time you are displaying any of the low / medium / high frequency plots after loading a file
   
 3) Once a low / medium / high plot is displayed, you can press the 'Display Statistics' button and display the statistics of the most recent low / medium / high plot or use 'Combine plots' buttons, which will combine all the low / medium / high frequency plots created at the time
